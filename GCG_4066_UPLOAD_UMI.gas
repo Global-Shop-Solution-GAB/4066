@@ -1,0 +1,1359 @@
+Program.Sub.ScreenSU.Start
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Variable.UDT.uOrder.Define("order_num",String,order_num)
+Variable.UDT.uOrder.Define("serial_num",String)
+Variable.UDT.uOrder.Define("doc_name",String)
+Variable.UDT.uOrder.Define("Order_No",String)
+Variable.UDT.uOrder.Define("account_num",String,account_num)
+Variable.UDT.uOrder.Define("Phone",String,BILL_TO_PHONE_NUMBER)
+Variable.UDT.uOrder.Define("Email",String,BILL_TO_EMAIL_ADDRESS)
+Variable.UDT.uOrder.Define("shipContact",String,SHIP_TO_CONTACT_NAME)
+Variable.UDT.uOrder.Define("ShipAdd1",String,SHIP_TO_ADDRESS_LINE_1)
+Variable.UDT.uOrder.Define("ShipAdd2",String,SHIP_TO_ADDRESS_LINE_2)
+Variable.UDT.uOrder.Define("ShipAdd3",String,SHIP_TO_ADDRESS_LINE_3)
+Variable.UDT.uOrder.Define("City",String,SHIP_TO_CITY)
+Variable.UDT.uOrder.Define("State",String,SHIP_TO_STATE)
+Variable.UDT.uOrder.Define("Country",String,SHIP_TO_COUNTRY)
+Variable.UDT.uOrder.Define("Zip",String,SHIP_TO_POSTAL_CODE)
+Variable.UDT.uOrder.Define("ShipPhone",String,SHIP_TO_PHONE_NUMBER)
+Variable.UDT.uOrder.Define("ShipEmail",String,SHIP_TO_EMAIL_ADDRESS)
+Variable.UDT.uOrder.Define("Contact",String,BILL_TO_CONTACT_NAME)
+Variable.UDT.uOrder.Define("COMMENTS",String)
+Variable.uGlobal.uOrder.Declare("uOrder")
+Variable.UDT.uOrderLines.Define("Description",String,Description)
+Variable.UDT.uOrderLines.Define("Type",String,Type)
+Variable.UDT.uOrderLines.Define("Unit_Price",Float,Unit_Price)
+Variable.UDT.uOrderLines.Define("Discount_Amt",Float,Discount_Amt)
+Variable.UDT.uOrderLines.Define("Quantity",String,Quantity)
+Variable.UDT.uOrderLines.Define("internal_id",String,internal_id)
+Variable.UDT.uOrderLines.Define("Order_No",String)
+Variable.UDT.uOrderLines.Define("PL",String)
+Variable.UDT.uOrderLines.Define("Source",String)
+Variable.UDT.uOrderLines.Define("UM",String)
+Variable.UDT.uOrderLines.Define("Order_Num",String,Order_Num)
+Variable.UDT.uOrderLines.Define("smartpart_num",String,smartpart_num)
+Variable.UDT.uOrderLines.Define("Order_Line_Num",String,Order_Line_Num)
+Variable.UDT.uOrderLines.Define("sPrice",String)
+Variable.UDT.uOrderLines.Define("sCost",String)
+Variable.UDT.uOrderLines.Define("sQuantity",String)
+Variable.UDT.uOrderLines.Define("sIPrice",String)
+Variable.UDT.uOrderLines.Define("item_num",String,item_num)
+Variable.UDT.uOrderLines.Define("item_class",String)
+Variable.UDT.uOrderLines.Define("parent",String)
+Variable.UDT.uOrderLines.Define("Account_Num",String)
+Variable.UDT.uOrderLines.Define("ListPrice",Float,ListPrice)
+Variable.UDT.uOrderLines.Define("Weight",Float)
+Variable.UDT.uOrderLines.Define("sWeight",String)
+Variable.UDT.uOrderLines.Define("sIWeight",String)
+Variable.UDT.uOrderLines.Define("sOCost",String)
+Variable.UDT.uOrderLines.Define("BOM_Flag",String)
+Variable.uGlobal.uOrderLines.Declare("uOrderLines")
+Variable.UDT.uBOMParent.Define("description",String,description)
+Variable.UDT.uBOMParent.Define("unit_price",Float,unit_price)
+Variable.UDT.uBOMParent.Define("quantity",String,quantity)
+Variable.UDT.uBOMParent.Define("internal_id",String,internal_id)
+Variable.UDT.uBOMParent.Define("PL",String)
+Variable.UDT.uBOMParent.Define("UM",String)
+Variable.UDT.uBOMParent.Define("Source",String)
+Variable.UDT.uBOMParent.Define("Order_Num",String,Order_Num)
+Variable.UDT.uBOMParent.Define("Order_Line_Num",String,Order_Line_Num)
+Variable.UDT.uBOMParent.Define("Smartpart_Num",String,SmartPart_Num)
+Variable.UDT.uBOMParent.Define("ListPrice",Float,ListPrice)
+Variable.uGlobal.uBOMParent.Declare("uBOMParent")
+Variable.UDT.uBOMLines.Define("description",String,description)
+Variable.UDT.uBOMLines.Define("Type",String)
+Variable.UDT.uBOMLines.Define("Unit_Price",String,price)
+Variable.UDT.uBOMLines.Define("Discount_Amt",Float)
+Variable.UDT.uBOMLines.Define("Quantity",Float)
+Variable.UDT.uBOMLines.Define("internal_id",String)
+Variable.UDT.uBOMLines.Define("Order_No",String)
+Variable.UDT.uBOMLines.Define("PL",String,item_class)
+Variable.UDT.uBOMLines.Define("Source",String,Source)
+Variable.UDT.uBOMLines.Define("UM",String,UOM)
+Variable.UDT.uBOMLines.Define("Order_Num",String,Order_Num)
+Variable.UDT.uBOMLines.Define("smartpart_num",String,smartpart_num)
+Variable.UDT.uBOMLines.Define("Order_Line_Num",String,Order_Line_Num)
+Variable.UDT.uBOMLines.Define("sPrice",String)
+Variable.UDT.uBOMLines.Define("sCost",String)
+Variable.UDT.uBOMLines.Define("sQuantity",String)
+Variable.UDT.uBOMLines.Define("sIPrice",String)
+Variable.UDT.uBOMLines.Define("item_num",String,item_num)
+Variable.UDT.uBOMLines.Define("item_class",String,item_class)
+Variable.UDT.uBOMLines.Define("parent",String)
+Variable.UDT.uBOMLines.Define("Account_Num",String)
+Variable.UDT.uBOMLines.Define("ListPrice",Float)
+Variable.UDT.uBOMLines.Define("Weight",Float,Weight)
+Variable.UDT.uBOMLines.Define("sWeight",String)
+Variable.UDT.uBOMLines.Define("sIWeight",String)
+Variable.UDT.uBOMLines.Define("sOCost",String)
+Variable.UDT.uBOMLines.Define("BOM_Flag",String)
+Variable.uGlobal.uBOMLines.Declare("uBOMLines")
+Variable.UDT.uInventory.Define("description",String)
+Variable.UDT.uInventory.Define("Type",String)
+Variable.UDT.uInventory.Define("Unit_Price",Float)
+Variable.UDT.uInventory.Define("Discount_Amt",Float)
+Variable.UDT.uInventory.Define("Quantity",Float)
+Variable.UDT.uInventory.Define("internal_id",String)
+Variable.UDT.uInventory.Define("Order_No",String)
+Variable.UDT.uInventory.Define("PL",String)
+Variable.UDT.uInventory.Define("Source",String)
+Variable.UDT.uInventory.Define("UM",String)
+Variable.UDT.uInventory.Define("Order_Num",String)
+Variable.UDT.uInventory.Define("smartpart_num",String)
+Variable.UDT.uInventory.Define("Order_Line_Num",String)
+Variable.UDT.uInventory.Define("sPrice",String)
+Variable.UDT.uInventory.Define("sCost",String)
+Variable.UDT.uInventory.Define("sQuantity",String)
+Variable.UDT.uInventory.Define("sIPrice",String)
+Variable.UDT.uInventory.Define("item_num",String)
+Variable.UDT.uInventory.Define("item_class",String)
+Variable.UDT.uInventory.Define("parent",String)
+Variable.UDT.uInventory.Define("Account_Num",String)
+Variable.UDT.uInventory.Define("ListPrice",Float)
+Variable.UDT.uInventory.Define("Weight",Float)
+Variable.UDT.uInventory.Define("sWeight",String)
+Variable.UDT.uInventory.Define("sIWeight",String)
+Variable.UDT.uInventory.Define("sOCost",String)
+Variable.UDT.uInventory.Define("BOM_Flag",String)
+Variable.uGlobal.uInventory.Declare("uInventory")
+Variable.Global.sFileName.Declare(String)
+
+Variable.Global.i.Declare(Float,0)
+Variable.UDT.uReport.Define("BIRUNID",Long,BIRUNID)
+Variable.UDT.uReport.Define("Order_No",String,Order_No)
+Variable.UDT.uReport.Define("Order_Num",String,Order_Num)
+Variable.UDT.uReport.Define("Account_Num",String,Account_Num)
+Variable.UDT.uReport.Define("Date_Upload",String,Date_Upload)
+Variable.uGlobal.uReport.Declare("uReport")
+Variable.Global.iBILogID.Declare(Long,0)
+Variable.Global.iBIRunID.Declare(Long,0)
+Variable.Global.sDate.Declare(String)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'Coded by SFF 10/27/2014
+'This upload is customer specific for their SQL Server setup to get Sales Orders,BOMs, Inventory Parts from and upload to GSS
+
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sSql.Declare(String)
+V.Local.iRPTID.Declare(Long)
+
+'connection string for test environment
+'F.ODBC.Connection!conX.OpenConnection("Provider=SQLNCLI11;Server=gss2k8mta5; Database=Silas_UNEX;Trusted_Connection=Yes;")
+
+'connection conP for Pervasive
+F.ODBC.Connection!conP.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+
+
+''below is connection string used when going live
+F.ODBC.Connection!conX.OpenConnection("Driver={SQL Server Native Client 11.0};Server= UNEXWWW2;Database=concept10production; Uid=gssconnector; Pwd=Bgss007*;")
+F.Intrinsic.Debug.Stop
+
+V.uGlobal.uReport.Redim(0,0)
+
+F.Global.BI.GetRunID(V.Global.iBIRunID)
+F.Global.BI.startLogging(V.Global.iBIRunID,V.Local.iRPTID,-1,"",V.Global.iBILogID)
+F.Intrinsic.String.Format(V.Ambient.Date,"MM/DD/YYYY",V.Global.sDate)
+F.Intrinsic.Debug.CallWrapperDebugDisable
+
+F.Intrinsic.Control.CallSub(Loadudts)
+F.Intrinsic.Control.CallSub(Createinvparts)
+F.Intrinsic.Control.CallSub(Createboms)
+F.Intrinsic.Control.CallSub(Createorders)
+F.Intrinsic.Control.CallSub(Createorderlines)
+
+F.ODBC.Connection!conP.Execute("delete from gcg_unex_upload_log")
+
+F.Intrinsic.Control.If(V.uGlobal.uReport.UBound,<>,0)
+	F.ODBC.Connection!conP.OpenRecordsetRW("rstP","select * from gcg_unex_upload_log")
+	F.Intrinsic.Variable.SaveUDTToRecordset("conP","rstP","v.uGlobal.uReport")
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.UI.CloseWaitDialog
+'call report that will show log of orders uploaded
+F.Intrinsic.Control.CallSub(Callbi)
+
+F.Intrinsic.Control.CallSub(Unload)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_UNEX_UPLOAD.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Main.End
+
+Program.Sub.Unload.Start
+F.Intrinsic.Control.End
+
+
+Program.Sub.Unload.End
+
+Program.Sub.CreateOrders.Start
+F.Intrinsic.Control.SetErrorHandler("CreateOrders_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.i.Declare(Float)
+V.Local.sRet.Declare(String)
+V.Local.sTemp.Declare(String)
+V.Local.sFullTemp.Declare(String)
+V.Local.sFilePath.Declare(String)
+
+
+
+'loop through uOrder UDT and create order headers (A,B,C) records for UPLSALES upload SALESHDR.txt
+F.Intrinsic.Control.For(V.local.i,V.uGlobal.uOrder.LBound,V.uGlobal.uOrder.UBound,1)
+
+'Record A
+	'order#, record type A, customer ID
+	F.Intrinsic.String.Concat(V.uGlobal.uOrder(v.Local.i)!Order_No.Trim,"   A",V.uGlobal.uOrder(v.Local.i)!account_num.Trim,V.Local.sTemp)
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",29,V.Local.sTemp)
+
+	'order date
+	F.Intrinsic.String.Format(V.Ambient.Date,"MMDDYY",V.Local.sRet)
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+
+	'due date	
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+	
+	F.intrinsic.string.rpad(V.local.stemp," ",92,V.local.stemp)
+	F.intrinsic.string.concat(V.local.stemp,"Jackson, NJ",V.local.stemp)
+	F.intrinsic.string.rpad(V.local.stemp," ",106,V.local.stemp)
+	F.Intrinsic.String.Concat(V.Local.sTemp,"NET 30",V.Local.sTemp)
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",247,V.Local.sTemp)
+	'user 3 doc_name
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrder(v.Local.i)!doc_name.Trim,V.Local.sTemp)
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",277,V.Local.sTemp)
+	'user 4 serial_num
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrder(v.Local.i)!serial_num.Trim,V.Local.sTemp)
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",307,V.Local.sTemp)
+	'user 5 order_num
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrder(v.Local.i)!order_num.Trim,V.Local.sTemp)
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",355,V.Local.sTemp)
+	'ship via
+	F.Intrinsic.String.Concat(V.Local.sTemp,"BEST WAY",V.Local.sTemp)
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",413,V.Local.sTemp)
+	'GL Account
+	F.Intrinsic.String.Concat(V.Local.sTemp,"4011-100",V.Local.sTemp)
+	
+	'currency code
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",514,V.Local.sTemp)
+	F.Intrinsic.String.Concat(V.Local.sTemp,"USDUSDUSD",V.Local.sTemp)
+
+'write to full temp variable that will go to SALESHDR.txt
+	F.Intrinsic.String.Concat(V.Local.sFullTemp,V.Local.sTemp,V.Ambient.NewLine,V.Local.sFullTemp)
+
+'Record B
+	'order #, Record type B, Customer ID
+	F.Intrinsic.String.Concat(V.uGlobal.uOrder(v.Local.i)!Order_No.Trim,"   B",V.uGlobal.uOrder(v.Local.i)!account_num.Trim,V.Local.sTemp)
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",311,V.Local.sTemp)
+	'contact phone
+	F.Intrinsic.String.StripCharacters(V.uGlobal.uOrder(v.Local.i)!Phone,V.Local.sRet)
+	F.Intrinsic.String.RPad(V.Local.sRet," ",20,V.Local.sRet)
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",331,V.Local.sTemp)
+	'email
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrder(v.Local.i)!Email,V.Local.sTemp)
+
+'write to full temp variable that will go to SALESHDR.txt
+	F.Intrinsic.String.Concat(V.Local.sFullTemp,V.Local.sTemp,V.Ambient.NewLine,V.Local.sFullTemp)
+
+'Record C	
+	'order #, Record type B, Customer ID
+	F.Intrinsic.String.Concat(V.uGlobal.uOrder(v.Local.i)!Order_No.Trim,"   C",V.uGlobal.uOrder(v.Local.i)!account_num.Trim,V.Local.sTemp)
+
+	'if ship to address exists from concept use it else blank
+	F.Intrinsic.Control.If(V.uGlobal.uOrder(v.Local.i)!ShipAdd1.Trim,<>,"")
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",29,V.Local.sTemp)
+		'ship contact
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrder(v.Local.i)!shipContact.Trim,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",59,V.Local.sTemp)
+		'ship address 1
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrder(v.Local.i)!ShipAdd1.Trim,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",89,V.Local.sTemp)
+		'ship address 2
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrder(v.Local.i)!ShipAdd2.Trim,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",119,V.Local.sTemp)
+		'ship address 3
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrder(v.Local.i)!ShipAdd3.Trim,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",209,V.Local.sTemp)
+		'ship city
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrder(v.Local.i)!City.Trim,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",224,V.Local.sTemp)
+		'ship state
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrder(v.Local.i)!State.Trim,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",226,V.Local.sTemp)
+		'ship zip
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrder(v.Local.i)!Zip.Trim,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",239,V.Local.sTemp)
+		'ship country
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrder(v.Local.i)!Country.Trim,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",251,V.Local.sTemp)
+		'ship attention
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrder(v.Local.i)!shipContact.Trim,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",281,V.Local.sTemp)
+	F.Intrinsic.Control.EndIf
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",298,V.Local.sTemp)
+	
+	'SHIP VIA
+	F.Intrinsic.String.Concat(V.Local.sTemp,"BEST WAY",V.Local.sTemp)
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",356,V.Local.sTemp)
+
+	'GL Account
+	F.Intrinsic.String.Concat(V.Local.sTemp,"4011-100",V.Local.sTemp)
+
+'write to full temp variable that will go to SALESHDR.txt
+	F.Intrinsic.String.Concat(V.Local.sFullTemp,V.Local.sTemp,V.Ambient.NewLine,V.Local.sFullTemp)
+	
+F.Intrinsic.Control.Next(V.Local.i)
+
+F.Intrinsic.String.Concat(V.Caller.FilesDir,"\SALESHDR.txt",V.Local.sFilePath)
+
+
+F.Intrinsic.Control.If(V.Local.sFullTemp,<>,"")
+	F.Intrinsic.File.String2File(V.Local.sFilePath,V.Local.sFullTemp)
+	'callwrappersync UPLSALES upload
+	F.Global.General.CallWrapperSync(50,"UPLSALES/A")
+F.Intrinsic.Control.EndIf
+
+'Flag Orders Processed in concept
+F.Intrinsic.Control.CallSub(Flagprocessed)
+
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("CreateOrders_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_UNEX_UPLOAD.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.CreateOrders.End
+
+Program.Sub.CreateBOMs.Start
+F.Intrinsic.Control.SetErrorHandler("CreateBOMs_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sParam.Declare(String)
+V.Local.i.Declare(Float)
+V.Local.sSql.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.sTemp.Declare(String)
+V.Local.sFullTemp.Declare(String)
+V.Local.sText.Declare(String)
+V.Local.iRet.Declare(Float)
+V.Local.bExists.Declare(Boolean)
+V.Local.sFilePath.Declare(String)
+
+F.Intrinsic.String.Concat(V.Caller.FilesDir,"\BOMC.txt",V.Local.sFilePath)
+
+
+'set correct source value for BOM upload
+F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uBOMLines!Source,"manuf_part",V.uGlobal.uBOMLines!Source,"M")
+F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uBOMLines!Source,"purchased_part",V.uGlobal.uBOMLines!Source,"P")
+
+'loop through uBOMLines in UDT and write upload file to BOMC.txt
+F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uBOMLines.LBound,V.uGlobal.uBOMLines.UBound,1)
+	
+	F.Intrinsic.String.Concat("select parent from v_bom_mstr where parent = '",V.uGlobal.uBOMLines(v.Local.i)!parent.Trim,"'",V.Local.sSql)
+	F.ODBC.Connection!conP.OpenRecordsetRO("rstP",V.Local.sSql)
+	F.Intrinsic.Control.If(V.ODBC.conP!rstP.EOF,=,True)
+
+		'parent
+		F.Intrinsic.String.RPad(V.uGlobal.uBOMLines(v.Local.i)!parent," ",20,V.Local.sRet)
+		F.Intrinsic.String.Concat(V.Local.sRet,,V.Local.sTemp)
+
+		'component
+		F.Intrinsic.String.RPad(V.uGlobal.uBOMLines(v.Local.i)!smartpart_num," ",20,V.Local.sRet)
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+
+		'Quantity
+		F.Intrinsic.Math.ConvertToFloat(V.uGlobal.uBOMLines(v.Local.i)!Quantity,V.Local.iRet)
+		F.Intrinsic.Math.Round(V.Local.iRet,2,V.Local.iRet)
+		F.Intrinsic.String.ConvertToString(V.Local.iRet,V.Local.sRet)
+		F.Intrinsic.String.IsInString(V.uGlobal.uBOMLines(v.Local.i)!Quantity,".",True,V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists,<>,True)
+			F.Intrinsic.String.Concat(V.uGlobal.uBOMLines(v.Local.i)!Quantity,".00",V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.String.Split(V.Local.sRet,".",V.Local.sText)
+		F.Intrinsic.String.Len(V.Local.sText(1),V.Local.iRet)
+		F.Intrinsic.Control.if(V.Local.iRet,=,1)
+			F.Intrinsic.String.RPad(V.Local.sText(1),"0",2,V.Local.sRet)
+			F.Intrinsic.String.Concat(V.Local.sText(0),".",V.Local.sRet,V.Local.sRet)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Concat(V.Local.sText(0),".",V.Local.sText(1),V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.String.LPad(V.Local.sRet,"0",16,V.Local.sRet)
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+
+		'Unit of Measure
+		F.Intrinsic.String.RPad(V.uGlobal.uBOMLines(v.Local.i)!UM," ",2,V.Local.sRet)
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+
+		'Component Description
+		F.Intrinsic.String.Left(V.uGlobal.uBOMLines(v.Local.i)!description,30,V.Local.sRet)
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+		
+		'Memo Line 1 Extra Text Remaining from Description
+		F.Intrinsic.String.Mid(V.uGlobal.uBOMLines(v.Local.i)!description,31,30,V.Local.sRet)
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+		
+		'Memo Line 2 Extra Text Remaining from Description
+		F.Intrinsic.String.Mid(V.uGlobal.uBOMLines(v.Local.i)!description,61,30,V.Local.sRet)
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",202,V.Local.sTemp)
+
+		'Source
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uBOMLines(v.Local.i)!Source.Trim,V.Local.sTemp)
+
+		'write to sFullTemp Variable that will go to BOMC.txt
+		F.Intrinsic.String.Concat(V.Local.sFullTemp,V.Local.sTemp,V.Ambient.NewLine,V.Local.sFullTemp)
+
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conP!rstP.Close
+F.Intrinsic.Control.Next(V.Local.i)
+
+F.Intrinsic.Debug.Stop
+
+F.Intrinsic.Control.If(V.Local.sFullTemp.Trim,<>,"")
+	F.Intrinsic.File.String2File(V.Local.sFilePath,V.Local.sFullTemp)
+	F.Intrinsic.String.Concat(V.Caller.CompanyCode,"1","UPLBOMC",V.Local.sParam)
+	F.Intrinsic.Task.LaunchGSSSync("UPL001A","-c",V.Local.sParam)
+F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("CreateBOMs_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_UNEX_UPLOAD.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.CreateBOMs.End
+
+Program.Sub.LoadUDTs.Start
+F.Intrinsic.Control.SetErrorHandler("LoadUDTs_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sSql.Declare(String)
+V.Local.i.Declare(Long)
+V.Local.iUB.Declare(Long)
+V.Local.iOrder.Declare(Long)
+V.Local.sOrder.Declare(String)
+V.Local.iRet.Declare(Float)
+V.Local.sRet.Declare(String)
+V.Local.bExists.Declare(Boolean)
+V.Local.sText.Declare(String)
+
+'redim all UDTs for loading from record set
+V.uGlobal.uBOMParent.Redim(-1,-1)
+V.uGlobal.uBOMLines.Redim(-1,-1)
+V.uGlobal.uOrder.Redim(-1,-1)
+V.uGlobal.uOrderLines.Redim(-1,-1)
+V.uGlobal.uInventory.Redim(0,0)
+F.Intrinsic.UI.InvokeWaitDialog("Loading Order Data","Please Wait")
+'load order number and customer number
+F.Intrinsic.String.Concat("SELECT [order_num],[account_num],[BILL_TO_CONTACT_NAME],[BILL_TO_PHONE_NUMBER],[BILL_TO_EMAIL_ADDRESS],[SHIP_TO_CONTACT_NAME],[SHIP_TO_ADDRESS_LINE_1],[SHIP_TO_ADDRESS_LINE_2],[SHIP_TO_ADDRESS_LINE_3],[SHIP_TO_CITY],[SHIP_TO_STATE],[SHIP_TO_COUNTRY],[SHIP_TO_POSTAL_CODE],[SHIP_TO_PHONE_NUMBER],[SHIP_TO_EMAIL_ADDRESS] FROM [stg_order_ob]  WHERE [PROCESSED] = 0",,V.Local.sSql)
+F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conX","rst","v.uGlobal.uOrder",False,1)
+F.Intrinsic.Control.Else
+	F.Intrinsic.UI.Msgbox("No Orders to Process","No Orders to Process")
+	F.Intrinsic.Control.end
+F.Intrinsic.Control.EndIf
+F.ODBC.conX!rst.Close
+
+'load Serial_num(quote),doc_name(project) from co_doc table
+F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrder.LBound,V.uGlobal.uOrder.UBound,1)
+	F.Intrinsic.String.Concat("select serial_number,doc_name from co_doc where orderNumber = '",V.uGlobal.uOrder(v.Local.i)!order_num.Trim,"'",V.Local.sSql)
+	F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		V.uGlobal.uOrder(v.Local.i)!serial_num.Set(V.ODBC.conX!rst.FieldValTrim!serial_number)
+		V.uGlobal.uOrder(v.Local.i)!doc_name.Set(V.ODBC.conX!rst.FieldValTrim!doc_name)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.Next(V.Local.i)
+
+'assign order_numbers for global shop to all orders being processed
+F.Intrinsic.String.Concat("select max(order_no) as order_no from v_order_header where isnumeric(order_no) = 1",,V.Local.sSql)
+F.ODBC.Connection!conP.OpenRecordsetRO("rstP",V.Local.sSql)
+V.Local.sOrder.Set(V.ODBC.conP!rstP.FieldValTrim!order_no)
+F.ODBC.conP!rstP.Close
+F.Intrinsic.Math.ConvertToLong(V.Local.sOrder,V.Local.iOrder)
+F.Intrinsic.Math.Add(V.Local.iOrder,1,V.Local.iOrder)
+
+F.Intrinsic.Control.If(V.uGlobal.uOrder.UBound,<>,-1)
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrder.LBound,V.uGlobal.uOrder.UBound,1)
+		F.Intrinsic.String.ConvertToString(V.Local.iOrder,V.Local.sOrder)
+		F.Intrinsic.String.LPad(V.Local.sOrder,"0",7,V.Local.sOrder)
+		V.uGlobal.uOrder(v.Local.i)!Order_No.Set(V.Local.sOrder)
+		F.Intrinsic.Math.Add(V.Local.iOrder,1,V.Local.iOrder)
+	F.Intrinsic.Control.Next(V.Local.i)
+	
+	'load comments for order_text = project description
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrder.LBound,V.uGlobal.uOrder.UBound,1)
+		F.Intrinsic.String.Concat("select input_value from stg_order_input_ob where order_num = '",V.uGlobal.uOrder(v.Local.i)!order_num.Trim,"' and input_name = 'PROJECT_DESCRIPTION'",V.Local.sSql)
+		F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+		F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+			V.uGlobal.uOrder(v.Local.i)!COMMENTS.Set(V.ODBC.conX!rst.FieldValTrim!input_value)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.Next(V.Local.i)
+F.Intrinsic.Control.EndIf
+
+
+'load order line detail from stg_order_detail_ob table
+F.Intrinsic.Control.If(V.uGlobal.uOrder.UBound,<>,-1)
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrder.LBound,V.uGlobal.uOrder.UBound,1)
+		F.Intrinsic.String.Concat("select ORDER_NUM,ORDER_LINE_NUM,upper(SMARTPART_NUM) as smartpart_num,item_num, description,unit_price as ListPrice,type,convert(numeric(10,2),(unit_price - discount_amt)) as unit_price,discount_amt,QUANTITY,INTERNAL_ID from STG_ORDER_DETAIL_OB where (ORDER_NUM='",V.uGlobal.uOrder(v.Local.i)!order_num.Trim,"') order by order_line_num asc",V.Local.sSql)
+		F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+		F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+			F.Intrinsic.Variable.LoadUDTFromRecordset("conX","rst","V.uGlobal.uOrderLines",True,1)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.Next(V.Local.i)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uOrderLines!Type,"K",V.uGlobal.uOrderLines!smartpart_num,"NOTE")
+F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uOrderLines!Type,"K",V.uGlobal.uOrderLines!PL,"CO")
+F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uOrderLines!Type,"K",V.uGlobal.uOrderLines!UM,"EA")
+F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uOrderLines!Type,"K",V.uGlobal.uOrderLines!Source,"M")
+F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uOrderLines!Type,"K",V.uGlobal.uOrderLines!Quantity,"1")
+F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uOrderLines!Source,"manuf_part",V.uGlobal.uOrderLines!Source,"M")
+F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uOrderLines!Source,"purchased_part",V.uGlobal.uOrderLines!Source,"P")
+
+'set Account_Num(customer ID) in OrderLines UDT
+F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrder.LBound,V.uGlobal.uOrder.UBound,1)
+	F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uOrderLines!Order_Num,V.uGlobal.uOrder(v.Local.i)!order_num,V.uGlobal.uOrderLines!Account_Num,V.uGlobal.uOrder(v.Local.i)!account_num)
+F.Intrinsic.Control.Next(V.Local.i)
+
+'set weight from co_item_master for salable items
+F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrderLines.LBound,V.uGlobal.uOrderLines.UBound,1)
+	F.Intrinsic.String.Concat("Select weight from co_item_master where smartpart_num = '",V.uGlobal.uOrderLines(v.Local.i)!smartpart_num,"'",V.Local.sSql)
+	F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		V.uGlobal.uOrderLines(v.Local.i)!Weight.Set(V.ODBC.conX!rst.FieldVal!weight)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.Next(V.Local.i)
+
+'set weight for configuration parts from stg_item_master_ob
+F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrderLines.LBound,V.uGlobal.uOrderLines.UBound,1)
+	F.Intrinsic.String.Concat("Select weight from stg_item_master_ob where order_num = '",V.uGlobal.uOrderLines(v.Local.i)!Order_Num,"' and order_line_num = '",V.uGlobal.uOrderLines(v.Local.i)!Order_Line_Num,"' and smartpart_num = '",V.uGlobal.uOrderLines(v.Local.i)!smartpart_num,"'",V.Local.sSql)
+	F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		V.uGlobal.uOrderLines(v.Local.i)!Weight.Set(V.ODBC.conX!rst.FieldVal!weight)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.Next(V.Local.i)
+
+'set sWeight for ORDADLN Format
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrderLines.LBound,V.uGlobal.uOrderLines.UBound,1)
+		F.Intrinsic.Math.ConvertToFloat(V.uGlobal.uOrderLines(v.Local.i)!Weight,V.Local.iRet)
+		F.Intrinsic.Math.Round(V.Local.iRet,3,V.Local.iRet)
+		F.Intrinsic.String.ConvertToString(V.Local.iRet,V.Local.sRet)
+
+		F.Intrinsic.String.IsInString(V.uGlobal.uOrderLines(v.Local.i)!Weight,".",True,V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists,<>,True)
+			F.Intrinsic.String.Concat(V.uGlobal.uOrderLines(v.Local.i)!Weight,".000",V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+
+		F.Intrinsic.String.Split(V.Local.sRet,".",V.Local.sText)
+		F.Intrinsic.String.Len(V.Local.sText(1),V.Local.iRet)
+		F.Intrinsic.Control.if(V.Local.iRet,<,3)
+			F.Intrinsic.String.RPad(V.Local.sText(1),"0",3,V.Local.sRet)
+			F.Intrinsic.String.Concat(V.Local.sText(0),V.Local.sRet,V.Local.sRet)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Concat(V.Local.sText(0),V.Local.sText(1),V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.String.LPad(V.Local.sRet,"0",10,V.Local.sRet)
+		V.uGlobal.uOrderLines(v.Local.i)!sWeight.Set(V.Local.sRet)
+	F.Intrinsic.Control.Next(V.Local.i)
+
+
+
+F.Intrinsic.Debug.Stop
+F.Intrinsic.Control.If(V.uGlobal.uOrderLines.UBound,<>,-1)
+	'set sPrice in uOrderLines for ORDADLN upload format
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrderLines.LBound,V.uGlobal.uOrderLines.UBound,1)
+		F.Intrinsic.Math.ConvertToFloat(V.uGlobal.uOrderLines(v.Local.i)!ListPrice,V.Local.iRet)
+		F.Intrinsic.Math.Round(V.Local.iRet,2,V.Local.iRet)
+		F.Intrinsic.String.ConvertToString(V.Local.iRet,V.Local.sRet)
+
+		F.Intrinsic.String.IsInString(V.uGlobal.uOrderLines(v.Local.i)!ListPrice,".",True,V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists,<>,True)
+			F.Intrinsic.String.Concat(V.uGlobal.uOrderLines(v.Local.i)!ListPrice,".00",V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+
+		F.Intrinsic.String.Split(V.Local.sRet,".",V.Local.sText)
+		F.Intrinsic.String.Len(V.Local.sText(1),V.Local.iRet)
+		F.Intrinsic.Control.if(V.Local.iRet,=,1)
+			F.Intrinsic.String.RPad(V.Local.sText(1),"0",2,V.Local.sRet)
+			F.Intrinsic.String.Concat(V.Local.sText(0),V.Local.sRet,V.Local.sRet)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Concat(V.Local.sText(0),V.Local.sText(1),V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.String.LPad(V.Local.sRet,"0",12,V.Local.sRet)
+		F.Intrinsic.String.RPad(V.Local.sRet,"0",16,V.Local.sRet)
+		V.uGlobal.uOrderLines(v.Local.i)!sPrice.Set(V.Local.sRet)
+	F.Intrinsic.Control.Next(V.Local.i)
+
+	'set sOCost for ORDADLN upload
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrderLines.LBound,V.uGlobal.uOrderLines.UBound,1)
+		F.Intrinsic.Math.Sub(V.uGlobal.uOrderLines(v.Local.i)!ListPrice,V.uGlobal.uOrderLines(v.local.i)!Discount_Amt,V.Local.iRet)
+		F.Intrinsic.String.ConvertToString(V.Local.iRet,V.Local.sRet)
+		F.Intrinsic.Math.ConvertToFloat(V.Local.sRet,V.Local.iRet)
+		F.Intrinsic.Math.Round(V.Local.iRet,6,V.Local.iRet)
+		F.Intrinsic.String.ConvertToString(V.Local.iRet,V.Local.sRet)
+
+		F.Intrinsic.String.IsInString(V.Local.sRet,".",True,V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists,<>,True)
+			F.Intrinsic.String.Concat(V.Local.sRet,".000000",V.Local.sRet)
+		F.Intrinsic.Control.endif
+
+		F.Intrinsic.String.Split(V.Local.sRet,".",V.Local.sText)
+		F.Intrinsic.String.Len(V.Local.sText(1),V.Local.iRet)
+		F.Intrinsic.Control.if(V.Local.iRet,<,6)
+			F.Intrinsic.String.RPad(V.Local.sText(1),"0",6,V.Local.sRet)
+			F.Intrinsic.String.Concat(V.Local.sText(0),V.Local.sRet,V.Local.sRet)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Concat(V.Local.sText(0),V.Local.sText(1),V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.String.LPad(V.Local.sRet,"0",16,V.Local.sRet)
+		V.uGlobal.uOrderLines(v.Local.i)!sOCost.Set(V.Local.sRet)
+	F.Intrinsic.Control.Next(V.Local.i)
+
+	'set sCost for Inventory Upload = unit_price - Discount_Amt
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrderLines.LBound,V.uGlobal.uOrderLines.UBound,1)
+		F.Intrinsic.Math.Sub(V.uGlobal.uOrderLines(v.Local.i)!ListPrice,V.uGlobal.uOrderLines(v.local.i)!Discount_Amt,V.Local.iRet)
+		F.Intrinsic.String.ConvertToString(V.Local.iRet,V.Local.sRet)
+		F.Intrinsic.Math.ConvertToFloat(V.Local.sRet,V.Local.iRet)
+		F.Intrinsic.Math.Round(V.Local.iRet,4,V.Local.iRet)
+		F.Intrinsic.String.ConvertToString(V.Local.iRet,V.Local.sRet)
+
+		F.Intrinsic.String.IsInString(V.Local.sRet,".",True,V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists,<>,True)
+			F.Intrinsic.String.Concat(V.Local.sRet,".00",V.Local.sRet)
+		F.Intrinsic.Control.endif
+
+		F.Intrinsic.String.Split(V.Local.sRet,".",V.Local.sText)
+		F.Intrinsic.String.Len(V.Local.sText(1),V.Local.iRet)
+		F.Intrinsic.Control.if(V.Local.iRet,=,1)
+			F.Intrinsic.String.RPad(V.Local.sText(1),"0",2,V.Local.sRet)
+			F.Intrinsic.String.Concat(V.Local.sText(0),".",V.Local.sRet,V.Local.sRet)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Concat(V.Local.sText(0),".",V.Local.sText(1),V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.String.LPad(V.Local.sRet,"0",16,V.Local.sRet)
+		V.uGlobal.uOrderLines(v.Local.i)!sCost.Set(V.Local.sRet)
+	F.Intrinsic.Control.Next(V.Local.i)
+
+	'set sQuantity for ORDADLN upload format
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrderLines.LBound,V.uGlobal.uOrderLines.UBound,1)
+		F.Intrinsic.Math.ConvertToFloat(V.uGlobal.uOrderLines(v.Local.i)!Quantity,V.Local.iRet)
+		F.Intrinsic.Math.Round(V.Local.iRet,4,V.Local.iRet)
+		F.Intrinsic.String.ConvertToString(V.Local.iRet,V.Local.sRet)
+
+		F.Intrinsic.String.IsInString(V.uGlobal.uOrderLines(v.Local.i)!Quantity,".",True,V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists,<>,True)
+			F.Intrinsic.String.Concat(V.uGlobal.uOrderLines(v.Local.i)!Quantity,".00",V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+
+		F.Intrinsic.String.Split(V.Local.sRet,".",V.Local.sText)
+		F.Intrinsic.String.Len(V.Local.sText(1),V.Local.iRet)
+		F.Intrinsic.Control.if(V.Local.iRet,=,1)
+			F.Intrinsic.String.RPad(V.Local.sText(1),"0",2,V.Local.sRet)
+			F.Intrinsic.String.Concat(V.Local.sText(0),V.Local.sRet,V.Local.sRet)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Concat(V.Local.sText(0),V.Local.sText(1),V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.String.LPad(V.Local.sRet,"0",11,V.Local.sRet)
+		F.Intrinsic.String.RPad(V.Local.sRet,"0",13,V.Local.sRet)
+		V.uGlobal.uOrderLines(v.Local.i)!sQuantity.Set(V.Local.sRet)
+	F.Intrinsic.Control.Next(V.Local.i)
+
+	'set sIPrice for Inventory Upload
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrderLines.LBound,V.uGlobal.uOrderLines.UBound,1)
+		F.Intrinsic.Math.ConvertToFloat(V.uGlobal.uOrderLines(v.Local.i)!ListPrice,V.Local.iRet)
+		F.Intrinsic.Math.Round(V.Local.iRet,2,V.Local.iRet)
+		F.Intrinsic.String.ConvertToString(V.Local.iRet,V.Local.sRet)
+
+		F.Intrinsic.String.IsInString(V.uGlobal.uOrderLines(v.Local.i)!ListPrice,".",True,V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists,<>,True)
+			F.Intrinsic.String.Concat(V.uGlobal.uOrderLines(v.Local.i)!ListPrice,".00",V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+
+		F.Intrinsic.String.Split(V.Local.sRet,".",V.Local.sText)
+		F.Intrinsic.String.Len(V.Local.sText(1),V.Local.iRet)
+		F.Intrinsic.Control.if(V.Local.iRet,=,1)
+			F.Intrinsic.String.RPad(V.Local.sText(1),"0",2,V.Local.sRet)
+			F.Intrinsic.String.Concat(V.Local.sText(0),".",V.Local.sRet,V.Local.sRet)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Concat(V.Local.sText(0),".",V.Local.sText(1),V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.String.LPad(V.Local.sRet,"0",16,V.Local.sRet)
+		V.uGlobal.uOrderLines(v.Local.i)!sIPrice.Set(V.Local.sRet)
+	F.Intrinsic.Control.Next(V.Local.i)
+F.Intrinsic.Control.EndIf
+
+'set globalshop order number from uOrder udt in OrderLines udt matched by order_num
+F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrder.LBound,V.uGlobal.uOrder.UBound,1)
+	F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uOrderLines!Order_Num,V.uGlobal.uOrder(v.Local.i)!order_num.Trim,V.uGlobal.uOrderLines!Order_No,V.uGlobal.uOrder(v.Local.i)!Order_No)
+F.Intrinsic.Control.Next(V.Local.i)
+
+'loop through order lines UDT and set UM,PL,Source for all parts
+F.Intrinsic.Control.If(V.uGlobal.uOrderLines.UBound,<>,-1)
+	'Source = product_input_num  = '212705491'
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrderLines.LBound,V.uGlobal.uOrderLines.UBound,1)
+		F.Intrinsic.String.Concat("select design_input_val from co_des_input where (design_id = '",V.uGlobal.uOrderLines(v.Local.i)!internal_id.Trim,"' and product_input_num = '212705491')",V.Local.sSql)
+		F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+		F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+			V.uGlobal.uOrderLines(v.Local.i)!Source.Set(V.ODBC.conX!rst.FieldValTrim!design_input_val)
+			F.ODBC.conX!rst.Close
+		F.Intrinsic.Control.Else
+			F.ODBC.conX!rst.Close
+			F.Intrinsic.String.Concat("select source from co_item_master where item_num = '",V.uGlobal.uOrderLines(v.Local.i)!item_num.Trim,"'",V.Local.sSql)
+			F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+			F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+				V.uGlobal.uOrderLines(v.Local.i)!Source.Set(V.ODBC.conX!rst.FieldValTrim!source)
+			F.Intrinsic.Control.EndIf
+			F.ODBC.conX!rst.Close
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(V.Local.i)
+
+	'UM product_input_num = '278307481'
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrderLines.LBound,V.uGlobal.uOrderLines.UBound,1)
+		F.Intrinsic.String.Concat("select design_input_val from co_des_input where (design_id = '",V.uGlobal.uOrderLines(v.Local.i)!internal_id.Trim,"' and product_input_num = '278307481')",V.Local.sSql)
+		F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+		F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+			V.uGlobal.uOrderLines(v.Local.i)!UM.Set(V.ODBC.conX!rst.FieldValTrim!design_input_val)
+		F.ODBC.conX!rst.Close
+		F.Intrinsic.Control.Else
+			F.ODBC.conX!rst.Close
+			F.Intrinsic.String.Concat("select weight, UOM from co_item_master where (item_num = '",V.uGlobal.uOrderLines(v.Local.i)!item_num.Trim,"')",V.Local.sSql)
+			F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+			F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+				V.uGlobal.uOrderLines(v.Local.i)!UM.Set(V.ODBC.conX!rst.FieldValTrim!UOM)
+			F.Intrinsic.Control.EndIf
+			F.ODBC.conX!rst.Close
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(V.Local.i)
+
+	'PL product_input_num = '211549391'
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrderLines.LBound,V.uGlobal.uOrderLines.UBound,1)
+		F.Intrinsic.String.Concat("select design_input_val from co_des_input where (design_id = '",V.uGlobal.uOrderLines(v.Local.i)!internal_id.Trim,"' and product_input_num = '211549391')",V.Local.sSql)
+		F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+		F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+			V.uGlobal.uOrderLines(v.Local.i)!PL.Set(V.ODBC.conX!rst.FieldValTrim!design_input_val)
+		F.ODBC.conX!rst.Close
+		F.Intrinsic.Control.Else
+			F.ODBC.conX!rst.Close
+			F.Intrinsic.String.Concat("select item_class from co_item_master where item_num = '",V.uGlobal.uOrderLines(v.Local.i)!item_num.Trim,"'",V.Local.sSql)
+			F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+			F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+				V.uGlobal.uOrderLines(v.Local.i)!PL.Set(V.ODBC.conX!rst.FieldValTrim!item_class)
+			F.Intrinsic.Control.EndIf
+			F.ODBC.conX!rst.Close
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(V.Local.i)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.If(V.uGlobal.uOrder.UBound,<>,-1)
+'loop through order lines where type = C and load load BOM parent part to BOM Parent UDT
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrder.LBound,V.uGlobal.uOrder.UBound,1)
+		F.Intrinsic.String.Concat("select ORDER_NUM,ORDER_LINE_NUM,upper(SMARTPART_NUM) as smartpart_num,  description,Unit_Price as ListPrice,convert(numeric(10,2),unit_price) as unit_price,QUANTITY,INTERNAL_ID from STG_ORDER_DETAIL_OB where (type = 'C' and ORDER_NUM='",V.uGlobal.uOrder(v.Local.i)!order_num.Trim,"') order by order_line_num asc",V.Local.sSql)
+		F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+		F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+			F.Intrinsic.Variable.LoadUDTFromRecordset("conX","rst","V.uGlobal.uBOMParent",True,1)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.Next(V.Local.i)
+F.Intrinsic.Control.EndIf
+
+'flag duplicate BOM Parents, will only upload unique BOM Header
+F.Intrinsic.Variable.UDTMultiFlagDuplicates(V.uGlobal.uBOMParent!smartpart_num)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uBOMParent)
+
+F.Intrinsic.Control.If(V.uGlobal.uBOMParent.UBound,<>,-1)
+
+'delete BOM Parents from uBOMParent UDT that exist in GSS
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uBOMParent.LBound,V.uGlobal.uBOMParent.UBound,1)
+		F.Intrinsic.String.Concat("select parent from v_bom_mstr where parent = '",V.uGlobal.uBOMParent(v.Local.i)!Smartpart_Num.Trim,"'",V.Local.sSql)
+		F.ODBC.Connection!conP.OpenRecordsetRO("rstP",V.Local.sSql)
+		F.Intrinsic.Control.If(V.ODBC.conP!rstP.EOF,<>,True)
+			F.Intrinsic.String.ConvertToString(V.Local.i,V.Local.sRet)
+			f.Intrinsic.Variable.UDTFlagOrdinal(v.uGlobal.uBOMParent,true,v.Local.sRet)
+			F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uBOMParent)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conP!rstP.Close
+	F.Intrinsic.Control.Next(V.Local.i)
+
+F.Intrinsic.Debug.Stop
+
+'loop through BOM Parent and set PL,UM,Source from co_des_input table
+'Source = product_input_num  = '212705491'
+
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uBOMParent.LBound,V.uGlobal.uBOMParent.UBound,1)
+		F.Intrinsic.String.Concat("select design_input_val from co_des_input where (design_id = '",V.uGlobal.uBOMParent(v.Local.i)!internal_id.Trim,"' and product_input_num = '212705491')",V.Local.sSql)
+		F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+		F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+			V.uGlobal.uBOMParent(v.Local.i)!Source.Set(V.ODBC.conX!rst.FieldValTrim!design_input_val)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.Next(V.Local.i)
+
+	'UM product_input_num = '278307481'
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uBOMParent.LBound,V.uGlobal.uBOMParent.UBound,1)
+		F.Intrinsic.String.Concat("select design_input_val from co_des_input where (design_id = '",V.uGlobal.uBOMParent(v.Local.i)!internal_id.Trim,"' and product_input_num = '278307481')",V.Local.sSql)
+		F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+		F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+			V.uGlobal.uBOMParent(v.Local.i)!UM.Set(V.ODBC.conX!rst.FieldValTrim!design_input_val)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.Next(V.Local.i)
+
+	'PL product_input_num = '211549391'
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uBOMParent.LBound,V.uGlobal.uBOMParent.UBound,1)
+		F.Intrinsic.String.Concat("select design_input_val from co_des_input where (design_id = '",V.uGlobal.uBOMParent(v.Local.i)!internal_id.Trim,"' and product_input_num = '211549391')",V.Local.sSql)
+		F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+		F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+			V.uGlobal.uBOMParent(v.Local.i)!PL.Set(V.ODBC.conX!rst.FieldValTrim!design_input_val)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.Next(V.Local.i)
+
+	'loop through BOM parent udt and get children parts and load BOM Lines UDT with children from stg_item_master_ob
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uBOMParent.LBound,V.uGlobal.uBOMParent.UBound,1)
+		F.Intrinsic.String.Concat("select order_num, order_line_num, upper(smartpart_num) as smartpart_num, item_num, item_class, source,UOM, description,convert(numeric(10,2),PRICE) as price,weight from stg_item_master_ob where (order_num = '",V.uGlobal.uBOMParent(v.Local.i)!Order_Num.Trim,"' AND ORDER_LINE_NUM = '",V.uGlobal.uBOMParent(V.Local.i)!Order_Line_Num.Trim,"')",V.Local.sSql)
+		F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+		F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+			F.Intrinsic.Variable.LoadUDTFromRecordset("conX","rst","v.uGlobal.uBOMLines",True)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.Next(V.Local.i)
+F.Intrinsic.Control.EndIf
+
+'loop through uBOMLines and set Quantity and part number from STG_BOM_OB
+F.Intrinsic.Control.If(V.uGlobal.uBOMLines.UBound,<>,-1)
+
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uBOMLines.LBound,V.uGlobal.uBOMLines.UBound,1)
+		F.Intrinsic.String.Concat("select upper(parent_smartpart_num) as parent_smartpart_num,quantity, upper(smartpart_num) as smartpart_num,discount_amt from stg_bom_ob where (order_num = '",V.uGlobal.uBOMLines(v.Local.i)!Order_Num.Trim,"' and order_line_num = '",V.uGlobal.uBOMLines(v.Local.i)!Order_Line_Num.Trim,"' and smartpart_num = '",V.uGlobal.uBOMLines(v.Local.i)!smartpart_num.trim,"')",V.Local.sSql)
+		F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sSql)
+		F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+			V.uGlobal.uBOMLines(v.Local.i)!smartpart_num.Set(V.ODBC.conX!rst.FieldValTrim!smartpart_num)
+			V.uGlobal.uBOMLines(v.Local.i)!Quantity.Set(V.ODBC.conX!rst.FieldVal!Quantity)
+			V.uGlobal.uBOMLines(v.Local.i)!Discount_Amt.Set(V.ODBC.conX!rst.FieldVal!discount_amt)
+			V.uGlobal.uBOMLines(v.Local.i)!parent.Set(V.ODBC.conX!rst.FieldValTrim!parent_smartpart_num)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.Next(V.Local.i)
+
+	'set sPrice in uOrderLines for ORDADLN upload format
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uBOMLines.LBound,V.uGlobal.uBOMLines.UBound,1)
+		F.Intrinsic.Math.ConvertToFloat(V.uGlobal.uBOMLines(v.Local.i)!Unit_Price,V.Local.iRet)
+		F.Intrinsic.Math.Round(V.Local.iRet,2,V.Local.iRet)
+		F.Intrinsic.String.ConvertToString(V.Local.iRet,V.Local.sRet)
+
+		F.Intrinsic.String.IsInString(V.uGlobal.uBOMLines(v.Local.i)!Unit_Price,".",True,V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists,<>,True)
+			F.Intrinsic.String.Concat(V.uGlobal.uBOMLines(v.Local.i)!Unit_Price,".00",V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+
+		F.Intrinsic.String.Split(V.Local.sRet,".",V.Local.sText)
+		F.Intrinsic.String.Len(V.Local.sText(1),V.Local.iRet)
+		F.Intrinsic.Control.if(V.Local.iRet,=,1)
+			F.Intrinsic.String.RPad(V.Local.sText(1),"0",2,V.Local.sRet)
+			F.Intrinsic.String.Concat(V.Local.sText(0),V.Local.sRet,V.Local.sRet)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Concat(V.Local.sText(0),V.Local.sText(1),V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.String.LPad(V.Local.sRet,"0",12,V.Local.sRet)
+		F.Intrinsic.String.RPad(V.Local.sRet,"0",16,V.Local.sRet)
+		V.uGlobal.uBOMLines(v.Local.i)!sPrice.Set(V.Local.sRet)
+	F.Intrinsic.Control.Next(V.Local.i)
+	F.Intrinsic.Debug.Stop
+
+	'set sCost for Inventory Upload = unit_price - Discount_Amt
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uBOMLines.LBound,V.uGlobal.uBOMLines.UBound,1)
+		F.Intrinsic.Math.Sub(V.uGlobal.uBOMLines(v.Local.i)!Unit_Price,V.uGlobal.uBOMLines(v.local.i)!Discount_Amt,V.Local.iRet)
+		F.Intrinsic.String.ConvertToString(V.Local.iRet,V.Local.sRet)
+		F.Intrinsic.Math.ConvertToFloat(V.Local.sRet,V.Local.iRet)
+		F.Intrinsic.Math.Round(V.Local.iRet,4,V.Local.iRet)
+		F.Intrinsic.String.ConvertToString(V.Local.iRet,V.Local.sRet)
+
+		F.Intrinsic.String.IsInString(V.Local.sRet,".",True,V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists,<>,True)
+			F.Intrinsic.String.Concat(V.Local.sRet,".00",V.Local.sRet)
+		F.Intrinsic.Control.endif
+
+		F.Intrinsic.String.Split(V.Local.sRet,".",V.Local.sText)
+		F.Intrinsic.String.Len(V.Local.sText(1),V.Local.iRet)
+		F.Intrinsic.Control.if(V.Local.iRet,=,1)
+			F.Intrinsic.String.RPad(V.Local.sText(1),"0",2,V.Local.sRet)
+			F.Intrinsic.String.Concat(V.Local.sText(0),".",V.Local.sRet,V.Local.sRet)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Concat(V.Local.sText(0),".",V.Local.sText(1),V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.String.LPad(V.Local.sRet,"0",16,V.Local.sRet)
+		V.uGlobal.uBOMLines(v.Local.i)!sCost.Set(V.Local.sRet)
+	F.Intrinsic.Control.Next(V.Local.i)
+
+	'set sQuantity for ORDADLN upload format
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uBOMLines.LBound,V.uGlobal.uBOMLines.UBound,1)
+		F.Intrinsic.Math.ConvertToFloat(V.uGlobal.uBOMLines(v.Local.i)!Quantity,V.Local.iRet)
+		F.Intrinsic.Math.Round(V.Local.iRet,4,V.Local.iRet)
+		F.Intrinsic.String.ConvertToString(V.Local.iRet,V.Local.sRet)
+
+		F.Intrinsic.String.IsInString(V.uGlobal.uBOMLines(v.Local.i)!Quantity,".",True,V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists,<>,True)
+			F.Intrinsic.String.Concat(V.uGlobal.uBOMLines(v.Local.i)!Quantity,".00",V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+
+		F.Intrinsic.String.Split(V.Local.sRet,".",V.Local.sText)
+		F.Intrinsic.String.Len(V.Local.sText(1),V.Local.iRet)
+		F.Intrinsic.Control.if(V.Local.iRet,=,1)
+			F.Intrinsic.String.RPad(V.Local.sText(1),"0",2,V.Local.sRet)
+			F.Intrinsic.String.Concat(V.Local.sText(0),V.Local.sRet,V.Local.sRet)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Concat(V.Local.sText(0),V.Local.sText(1),V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.String.LPad(V.Local.sRet,"0",11,V.Local.sRet)
+		F.Intrinsic.String.RPad(V.Local.sRet,"0",13,V.Local.sRet)
+		V.uGlobal.uBOMLines(v.Local.i)!sQuantity.Set(V.Local.sRet)
+	F.Intrinsic.Control.Next(V.Local.i)
+
+	'set sIPrice for Inventory Upload
+	F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uBOMLines.LBound,V.uGlobal.uBOMLines.UBound,1)
+		F.Intrinsic.Math.ConvertToFloat(V.uGlobal.uBOMLines(v.Local.i)!Unit_Price,V.Local.iRet)
+		F.Intrinsic.Math.Round(V.Local.iRet,2,V.Local.iRet)
+		F.Intrinsic.String.ConvertToString(V.Local.iRet,V.Local.sRet)
+
+		F.Intrinsic.String.IsInString(V.uGlobal.uBOMLines(v.Local.i)!Unit_Price,".",True,V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists,<>,True)
+			F.Intrinsic.String.Concat(V.uGlobal.uBOMLines(v.Local.i)!Unit_Price,".00",V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+
+		F.Intrinsic.String.Split(V.Local.sRet,".",V.Local.sText)
+		F.Intrinsic.String.Len(V.Local.sText(1),V.Local.iRet)
+		F.Intrinsic.Control.if(V.Local.iRet,=,1)
+			F.Intrinsic.String.RPad(V.Local.sText(1),"0",2,V.Local.sRet)
+			F.Intrinsic.String.Concat(V.Local.sText(0),".",V.Local.sRet,V.Local.sRet)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Concat(V.Local.sText(0),".",V.Local.sText(1),V.Local.sRet)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.String.LPad(V.Local.sRet,"0",16,V.Local.sRet)
+		V.uGlobal.uBOMLines(v.Local.i)!sIPrice.Set(V.Local.sRet)
+	F.Intrinsic.Control.Next(V.Local.i)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Variable.UDTCopy(V.uGlobal.uBOMLines,V.uGlobal.uInventory,False)
+F.Intrinsic.Variable.UDTCopy(V.uGlobal.uOrderLines,V.uGlobal.uInventory,True)
+F.Intrinsic.Variable.UDTMultiFlagDuplicates(V.uGlobal.uInventory!smartpart_num)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uInventory)
+
+F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uInventory!Source,"manuf_part",V.uGlobal.uInventory!Source,"M")
+F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uInventory!Source,"purchased_part",V.uGlobal.uInventory!Source,"P")
+
+
+
+
+F.Intrinsic.Debug.Stop
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("LoadUDTs_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_UNEX_UPLOAD.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.LoadUDTs.End
+
+Program.Sub.CreateInvParts.Start
+F.Intrinsic.Control.SetErrorHandler("CreateInvParts_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.i.Declare(Float)
+V.Local.sSql.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.iHandle.Declare(Long)
+V.Local.sTemp.Declare(String)
+V.Local.sFullTemp.Declare(String)
+V.Local.sFilePath.Declare(String)
+V.Local.iRet.Declare(Float)
+V.Local.sDesc.Declare(String)
+V.Local.sAltDesc1.Declare(String)
+V.Local.sAltDesc2.Declare(String)
+V.Local.sText.Declare(String)
+V.Local.bExists.Declare(Boolean)
+
+F.Intrinsic.String.Concat(V.Caller.FilesDir,"\INV.txt",V.Local.sFilePath)
+
+'F.Intrinsic.Debug.Stop
+'F.Intrinsic.Debug.InvokeDebugger
+'F.Intrinsic.Debug.Stop
+
+'set sIWeight for Inventory Upload
+F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uInventory.LBound,V.uGlobal.uInventory.UBound,1)
+	F.Intrinsic.Math.ConvertToFloat(V.uGlobal.uInventory(v.Local.i)!Weight,V.Local.iRet)
+	F.Intrinsic.Math.Round(V.Local.iRet,6,V.Local.iRet)
+	F.Intrinsic.String.ConvertToString(V.Local.iRet,V.Local.sRet)
+
+	F.Intrinsic.String.IsInString(V.uGlobal.uInventory(v.Local.i)!Weight,".",True,V.Local.bExists)
+	F.Intrinsic.Control.If(V.Local.bExists,<>,True)
+		F.Intrinsic.String.Concat(V.uGlobal.uInventory(v.Local.i)!Weight,".00",V.Local.sRet)
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.String.Split(V.Local.sRet,".",V.Local.sText)
+	F.Intrinsic.String.Len(V.Local.sText(1),V.Local.iRet)
+	F.Intrinsic.Control.if(V.Local.iRet,<,6)
+		F.Intrinsic.String.RPad(V.Local.sText(1),"0",6,V.Local.sRet)
+		F.Intrinsic.String.Concat(V.Local.sText(0),".",V.Local.sRet,V.Local.sRet)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.String.Concat(V.Local.sText(0),".",V.Local.sText(1),V.Local.sRet)
+	F.Intrinsic.Control.EndIf
+	F.Intrinsic.String.LPad(V.Local.sRet,"0",16,V.Local.sRet)
+	V.uGlobal.uInventory(v.Local.i)!sIWeight.Set(V.Local.sRet)
+
+F.Intrinsic.Control.Next(V.Local.i)
+
+'Set BOM Flag 'B' for BOM Parent Parts
+F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uBOMParent.LBound,V.uGlobal.uBOMParent.UBound,1)
+	F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uInventory!Smartpart_Num,V.uGlobal.uBOMParent(v.Local.i)!smartpart_num,V.uGlobal.uInventory!BOM_Flag,"B")
+F.Intrinsic.Control.Next(V.Local.i)
+
+'loop through order lines UDT, see if part exists in GSS, if not add line to inventory upload file INV.txt
+F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uInventory.LBound,V.uGlobal.uInventory.UBound,1)
+	F.Intrinsic.String.Concat("select part from v_inventory_mstr where part = '",V.uGlobal.uInventory(v.Local.i)!smartpart_num.Trim,"'",V.Local.sSql)
+	F.ODBC.Connection!conP.OpenRecordsetRO("rstP",V.Local.sSql)
+	F.Intrinsic.Control.If(V.ODBC.conP!rstP.EOF,=,True)
+		F.Intrinsic.String.RPad(V.uGlobal.uInventory(v.Local.i)!smartpart_num.Trim," ",20,V.Local.sRet)
+		F.Intrinsic.String.Concat(V.Local.sRet,,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",23,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.uGlobal.uInventory(v.Local.i)!PL.Trim," ",2,V.Local.sRet)
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",31,V.Local.sTemp)
+		F.Intrinsic.String.Left(V.uGlobal.uInventory(v.Local.i)!description,30,V.Local.sRet)
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",61,V.Local.sTemp)
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uInventory(v.Local.i)!UM.Trim,V.Local.sRet)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",131,V.Local.sTemp)
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uInventory(v.Local.i)!sCost.Trim,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",339,V.Local.sTemp)
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uInventory(v.Local.i)!sIPrice.Trim,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",425,V.Local.sTemp)
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uInventory(v.Local.i)!Source.Trim,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",497,V.Local.sTemp)
+		F.Intrinsic.String.Mid(V.uGlobal.uInventory(v.Local.i)!description,31,30,V.Local.sRet)
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+		F.Intrinsic.String.Mid(V.uGlobal.uInventory(v.Local.i)!description,61,30,V.Local.sRet)
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",557,V.Local.sTemp)
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uInventory(v.Local.i)!sIWeight,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",930,V.Local.sTemp)
+		F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uInventory(v.Local.i)!BOM_Flag,V.Local.sTemp)
+		F.Intrinsic.String.Concat(V.local.sFullTemp,V.local.sTemp,V.Ambient.NewLine,V.Local.sFullTemp)
+
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conP!rstP.Close
+F.Intrinsic.Control.Next(V.Local.i)
+F.Intrinsic.Debug.Stop
+
+F.Intrinsic.Control.If(V.Local.sFullTemp.Trim,<>,"")
+	F.Intrinsic.File.String2File(V.Local.sFilePath,V.Local.sFullTemp)
+	F.Global.General.CallWrapperSync(50,"UPLINV/H")
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("CreateInvParts_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_UNEX_UPLOAD.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.CreateInvParts.End
+
+Program.Sub.CreateOrderLines.Start
+F.Intrinsic.Control.SetErrorHandler("CreateOrderLines_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.i.Declare(Float)
+V.Local.sRet.Declare(String)
+V.Local.sTemp.Declare(String)
+V.Local.sFullTemp.Declare(String)
+V.Local.sPath.Declare(String)
+V.Local.bExists.Declare(String)
+V.Local.sSql.Declare(String)
+V.Local.iRet.Declare(Float)
+'F.Intrinsic.Debug.InvokeDebugger
+'F.Intrinsic.Debug.Stop
+
+
+'create Order Lines on file for ORDADLN upload
+F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uOrderLines.LBound,V.uGlobal.uOrderLines.UBound,1)
+	F.Intrinsic.UI.ChangeWaitStatus("Loading Order Lines",V.Local.i,V.uGlobal.uOrderLines.LBound,V.uGlobal.uOrderLines.UBound)
+	'Record Type "O",Customer ID,Order #,Part #
+	F.Intrinsic.String.RPad(V.uGlobal.uOrderLines(v.Local.i)!Account_Num," ",7,V.Local.sRet)
+	F.Intrinsic.String.Concat("O",V.Local.sRet,V.uGlobal.uOrderLines(v.Local.i)!Order_No.Trim,V.uGlobal.uOrderLines(v.Local.i)!smartpart_num.Trim,V.Local.sTemp)
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",55,V.Local.sTemp)
+	'PL
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrderLines(v.Local.i)!PL.Trim,V.Local.sTemp)
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",60,V.Local.sTemp)
+	'Description
+	F.Intrinsic.String.Left(V.uGlobal.uOrderLines(v.Local.i)!Description.Trim,30,V.Local.sRet)
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",90,V.Local.sTemp)
+	'line number and line type "S"
+	F.Intrinsic.String.LPad(V.uGlobal.uOrderLines(v.Local.i)!Order_Line_Num.Trim,"0",3,V.Local.sRet)
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,"S",V.Local.sTemp)
+	'Quantity
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrderLines(v.Local.i)!sQuantity.Trim,V.Local.sTemp)
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",107,V.Local.sTemp)
+	'weight
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrderLines(v.Local.i)!sWeight,V.Local.sTemp)
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",117,V.Local.sTemp)
+	'Price
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrderLines(v.Local.i)!sPrice.Trim,V.Local.sTemp)
+	'user 1 extra text from description
+	F.Intrinsic.String.Mid(V.uGlobal.uOrderLines(v.Local.i)!Description.Trim,31,30,V.Local.sRet)
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+	'user 2 extra text from description
+	F.Intrinsic.String.Mid(V.uGlobal.uOrderLines(v.Local.i)!Description.Trim,61,30,V.Local.sRet)
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+	'user 3 extra text from description
+	F.Intrinsic.String.Mid(V.uGlobal.uOrderLines(v.Local.i)!Description.Trim,91,30,V.Local.sRet)
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+	'user 4 extra text from description
+	F.Intrinsic.String.Mid(V.uGlobal.uOrderLines(v.Local.i)!Description.Trim,121,30,V.Local.sRet)
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+	'user 5 extra text from description
+	F.Intrinsic.String.Mid(V.uGlobal.uOrderLines(v.Local.i)!Description.Trim,151,30,V.Local.sRet)
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.Local.sRet,V.Local.sTemp)
+
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",283,V.Local.sTemp)
+	'UM
+	F.Intrinsic.String.Concat(V.Local.sTemp,V.uGlobal.uOrderLines(v.Local.i)!UM.Trim,V.Local.sTemp)
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",285,V.Local.sTemp)
+	'Accept Zero Price Flag "1"
+	F.Intrinsic.String.Concat(V.Local.sTemp,"1",V.Local.sTemp)
+	'Cost
+	F.Intrinsic.String.RPad(V.Local.sTemp," ",319,V.Local.sTemp)
+	F.Intrinsic.String.Concat(V.Local.sTemp,"1",V.uGlobal.uOrderLines(v.Local.i)!sOCost.Trim,V.Local.sTemp)
+
+	'write sTemp to sFullTemp that will go to upload file
+	F.Intrinsic.String.Concat(V.Local.sFullTemp,V.Local.sTemp,V.Ambient.NewLine,V.Local.sFullTemp)
+
+'Define FileName and Write to File for ORDADLN and Call OrderLineUpload	
+	F.Intrinsic.String.Concat("SOLINESUPLOAD",V.Caller.Terminal,V.Caller.CompanyCode,V.Global.sFileName)
+
+
+
+
+	F.Intrinsic.String.Concat(V.Caller.FilesDir,"\",V.Global.sFileName,V.Local.sPath)
+	F.Intrinsic.File.Exists(V.Local.sPath,V.Local.bExists)
+	F.Intrinsic.Control.If(V.Local.bExists,=,True)
+		F.Intrinsic.File.DeleteFile(V.Local.sPath)
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.If(V.Local.sFullTemp,<>,"")
+		F.Intrinsic.File.String2File(V.Local.sPath,V.Local.sFullTemp)
+		F.Intrinsic.Control.CallSub(Orderlineupload)
+		'update discount price
+		F.Intrinsic.String.LPad(V.uGlobal.uOrderLines(v.Local.i)!Order_Line_Num.Trim,"0",3,V.Local.sRet)
+		F.Intrinsic.String.RPad(V.Local.sRet,"0",4,V.Local.sRet)
+		F.Intrinsic.String.Concat("update order_lines set discount_price = ",V.uGlobal.uOrderLines(v.Local.i)!Unit_Price," where order_no = '",V.uGlobal.uOrderLines(v.Local.i)!Order_No.Trim,"' and record_no = '",V.local.sRet,"' and record_type = 'L'",V.Local.sSql)
+		F.ODBC.Connection!conP.Execute(V.Local.sSql)
+		F.Intrinsic.String.Concat("update order_lines set price_disc_ord = ",V.uGlobal.uOrderLines(v.Local.i)!Unit_Price," where order_no = '",V.uGlobal.uOrderLines(v.Local.i)!Order_No.Trim,"' and record_no = '",V.local.sRet,"' and record_type = 'L'",V.Local.sSql)
+		F.ODBC.Connection!conP.Execute(V.Local.sSql)
+		F.Intrinsic.Math.Mult(V.uGlobal.uOrderLines(v.Local.i)!Quantity,V.uGlobal.uOrderLines(v.Local.i)!Unit_Price,V.Local.iRet)
+		F.Intrinsic.String.Concat("update order_lines set extension = ",V.Local.iRet,", extension_order = ",V.local.iRet," where order_no = '",V.uGlobal.uOrderLines(v.Local.i)!Order_No.Trim,"' and record_no = '",V.local.sRet,"' and record_type = 'L'",V.Local.sSql)
+		F.ODBC.Connection!conP.Execute(V.Local.sSql)
+	F.Intrinsic.Control.EndIf
+
+	V.Local.sFullTemp.Set("")
+F.Intrinsic.Control.Next(V.Local.i)
+
+
+
+
+
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("CreateOrderLines_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_UNEX_UPLOAD.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.CreateOrderLines.End
+
+Program.Sub.OrderLineUpload.Start
+F.Intrinsic.Control.SetErrorHandler("OrderLineUpload_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sParam.Declare(String)
+V.Local.sPath.Declare(String)
+V.Local.sTemp.Declare(String)
+
+V.Local.sParam.Set("")
+F.Intrinsic.String.Concat(V.Caller.FilesDir,"\",V.Global.sFileName,V.Local.sPath)
+F.Intrinsic.String.Rpad(Variable.Caller.User," ",8,Variable.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sParam,V.Ambient.QuadQuote,Variable.Caller.CompanyCode,Variable.Local.sTemp,Variable.Local.sPath,V.Ambient.QuadQuote,Variable.Local.sParam)
+
+
+'F.Intrinsic.Debug.CallWrapperDebugEnable
+F.Intrinsic.Task.Launchgsssync("ORDADCMD","-c",Variable.Local.sParam)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("OrderLineUpload_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_UNEX_UPLOAD.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.OrderLineUpload.End
+
+Program.Sub.FlagProcessed.Start
+F.Intrinsic.Control.SetErrorHandler("FlagProcessed_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+
+V.Local.sSql.Declare(String)
+V.Local.sRet.Declare(String)
+V.Global.sOrder.Declare(String)
+V.Local.sUDT.Declare(String)
+V.Local.sUDTElements.Declare(String)
+
+F.Intrinsic.Control.For(V.global.i,V.uGlobal.uOrder.LBound,V.uGlobal.uOrder.UBound,1)
+	F.Intrinsic.String.Concat("Select order_no from v_order_header where order_no = '",V.uGlobal.uOrder(v.global.i)!Order_No.Trim,"'",V.Local.sSql)
+	F.ODBC.Connection!conP.OpenRecordsetRO("rstP",V.Local.sSql)
+	F.Intrinsic.Control.If(V.ODBC.conP!rstP.EOF,<>,True)
+		F.Intrinsic.String.Concat("update stg_order_ob set processed = 1 where order_num = '",V.uGlobal.uOrder(v.global.i)!order_num.Trim,"'",V.Local.sRet)
+		F.ODBC.Connection!conX.Execute(V.Local.sRet)
+		V.Global.sOrder.Set(V.uGlobal.uOrder(v.global.i)!Order_No)
+		V.Global.i.Set(V.global.i)
+		F.Intrinsic.String.Concat("BIRUNID*!*Order_No*!*Order_Num*!*Account_Num*!*Date_Upload",,V.Local.sUDTElements)
+		F.Intrinsic.String.Concat(V.Global.iBIRunID,"*!*",V.uGlobal.uOrder(v.global.i)!Order_No.Trim,"*!*",V.uGlobal.uOrder(v.global.i)!order_num,"*!*",V.uGlobal.uOrder(v.global.i)!account_num.Trim,"*!*",V.Global.sDate,V.Local.sUDT)
+		F.Intrinsic.Variable.LoadUDTFromString(V.uGlobal.uReport,V.Local.sUDTElements,V.Local.sUDT,V.Ambient.NewLine,"*!*",True)
+		F.Intrinsic.Control.CallSub(Insertcomments)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conP!rstP.Close
+F.Intrinsic.Control.Next(V.global.i)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("FlagProcessed_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_UNEX_UPLOAD.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.FlagProcessed.End
+
+Program.Sub.InsertComments.Start
+F.Intrinsic.Control.SetErrorHandler("InsertComments_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.i.Declare(Float)
+V.Local.iText.Declare(Float)
+V.Local.sSql.Declare(String)
+V.Local.sText.Declare(String)
+V.Local.sTextSeq.Declare(String)
+V.Local.iTextSeq.Declare(Float)
+V.Local.sTextRet.Declare(String)
+V.Local.sComments.Declare(String)
+
+V.Local.sText.Set("")
+V.Local.iTextSeq.Set(1)
+f.Intrinsic.String.Replace(v.uGlobal.uOrder(v.Global.i)!COMMENTS.Trim,v.ASCII.34,"in",v.Local.sComments)
+F.Intrinsic.String.Replace(V.Local.sComments,"'","ft",V.Local.sComments)
+F.Intrinsic.Control.If(V.Local.sComments.Trim,<>,"")
+	F.Intrinsic.String.LimitSplit(V.Local.sComments,30,V.Local.sText)
+	F.Intrinsic.Control.For(V.Local.iText,V.Local.sText.LBound,V.local.sText.UBound,1)
+		F.Intrinsic.String.ConvertToString(V.Local.iTextSeq,V.Local.sTextSeq)
+		F.Intrinsic.String.LPad(V.Local.sTextSeq,"0",3,V.Local.sTextSeq)
+		F.Intrinsic.String.Concat("insert into order_text values('",V.uGlobal.uOrder(v.global.i)!order_no.Trim,"','0000','","","","','','','','','','",V.Local.sTextSeq,"','",V.Local.sText(v.local.iText),"','','M','')",V.Local.sSQL)
+		F.ODBC.Connection!conP.Execute(V.Local.sSQL)
+		F.Intrinsic.Math.Add(V.Local.iTextSeq,1,V.Local.iTextSeq)
+	F.Intrinsic.Control.Next(V.Local.iText)
+F.Intrinsic.Control.EndIf
+
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("InsertComments_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_UNEX_UPLOAD_PLA.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.InsertComments.End
+
+Program.Sub.CallBI.Start
+F.Intrinsic.Control.SetErrorHandler("CallBI_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.iRet.Declare(String)
+V.Local.sParams.Declare(String)
+V.Local.sParamValues.Declare(String)
+
+V.Local.sParams.Set("DATE")
+V.Local.sParamValues.Set(V.Global.sDate)
+F.Global.BI.RunReportPreProcessor(v.Global.iBIRunID,v.Global.iBILogID,v.Local.sParams,v.Local.sParamValues,"",-1,True,"",-1,"",-1,"","",v.Local.iRet)
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("CallBI_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_UNEX_UPLOAD_UMI.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.CallBI.End
+
+Program.Sub.Comments.Start
+${$0$}$SQL INTEGRATION UPLOADS$}$SFF$}$9/4/2014 11:05:27 AM
+Program.Sub.Comments.End
+
